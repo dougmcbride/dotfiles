@@ -1,9 +1,13 @@
+[user]
+	name = dougmcbride
+	email = doug@sneakyfrog.com
 [apply]
-	whitespace = fix
+        whitespace = fix
 [core]
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
-	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+	trustctime = false
+        excludesfile = ~/.gitignore
+        attributesfile = ~/.gitattributes
+        whitespace = fix,space-before-tab,tab-in-indent,trailing-space
 [color]
 	ui = auto
 [color "branch"]
@@ -19,17 +23,46 @@
 	added = yellow
 	changed = green
 	untracked = cyan
+[alias]
+	ap = add -p
+	bd = branch -d
+	br = branch
+	ca = commit -a -m
+	cb = checkout -b
+	ci = commit
+	co = checkout
+	db = branch -d
+	df = diff
+	lg = log -p
+	lo = log --pretty=o --decorate
+	mt = mergetool
+	ri = rebase -i master
+	rs = reset --hard
+	sb = show-branch
+	sc = svn dcommit
+	sp = svn rebase
+	st = status
+    rc = rebase --continue
 [merge]
-	log = true
+	keepBackup = false;
+	tool = p4merge
+[mergetool "p4merge"]
+	cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	keepTemporaries = false
+	trustExitCode = false
+	keepBackup = false
+#[diff]
+    #external = p4diff
+        log = true
 [url "git@github.com:"]
-	insteadOf = "gh:"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "git://github.com/"
+        insteadOf = "gh:"
+        pushInsteadOf = "github:"
+        pushInsteadOf = "git://github.com/"
 [url "git://github.com/"]
-	insteadOf = "github:"
+        insteadOf = "github:"
 [url "git@gist.github.com:"]
-	insteadOf = "gst:"
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
+        insteadOf = "gst:"
+        pushInsteadOf = "gist:"
+        pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
-	insteadOf = "gist:"
+        insteadOf = "gist:"
