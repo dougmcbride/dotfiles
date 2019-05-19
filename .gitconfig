@@ -1,48 +1,63 @@
 [user]
-	name = dougmcbride
-	email = doug@sneakyfrog.com
+	name = Doug McBride
+	email = doug.mcbride@disney.com
 [apply]
         whitespace = fix
 [core]
 	trustctime = false
-        excludesfile = ~/.gitignore
+	excludesfile = /Users/mcbrd007/.gitignore
         attributesfile = ~/.gitattributes
-        whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+        #whitespace = fix,trailing-space
+	whitespace = -trailing-space,-space-before-tab
+	autocrlf = input
+	hooksPath = /Users/mcbrd007/.git-hooks
+	#autocrlf = input
 [color]
 	ui = auto
+	diff = auto
 [color "branch"]
 	current = yellow reverse
 	local = yellow
 	remote = green
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+	meta = yellow
+	frag = magenta
+	old = red
+	new = green
 [color "status"]
 	added = yellow
 	changed = green
 	untracked = cyan
 [alias]
+	am = commit --amend
 	ap = add -p
+	backup = push --mirror backup
 	bd = branch -d
 	br = branch
 	ca = commit -a -m
 	cb = checkout -b
+	cf = clean -f
 	ci = commit
 	co = checkout
+	cp = commit -m CHECKPOINT
+	crf = commit -m 'Reformat code'
 	db = branch -d
-	df = diff
-	lg = log -p
-	lo = log --pretty=o --decorate
+	dbfff = branch -D
+	dc = diff --word-diff=color --cached
+	df = diff --word-diff=color
+	dt = difftool
+	fo = fetch --prune origin
+	lg = log -p --abbrev-commit
+	lo = log --color --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%ar) %C(blue)%an%Creset'
 	mt = mergetool
+	ra = rebase --abort
+	rc = rebase --continue
 	ri = rebase -i master
 	rs = reset --hard
+	rv = diff --word-diff=color -U20
 	sb = show-branch
-	sc = svn dcommit
-	sp = svn rebase
-	st = status
-    rc = rebase --continue
+	st = status -sb
+	vb = commit -a -m 'Version bump'
 [merge]
 	keepBackup = false;
 	tool = p4merge
@@ -51,9 +66,6 @@
 	keepTemporaries = false
 	trustExitCode = false
 	keepBackup = false
-#[diff]
-    #external = p4diff
-        log = true
 [url "git@github.com:"]
         insteadOf = "gh:"
         pushInsteadOf = "github:"
@@ -66,3 +78,28 @@
         pushInsteadOf = "git://gist.github.com/"
 [url "git://gist.github.com/"]
         insteadOf = "gist:"
+[rerere]
+	enabled = 1
+[diff]
+    tool = p4merge
+[difftool "p4merge"]
+    cmd = p4merge "$LOCAL" "$REMOTE"
+[gui]
+	recentrepo = /Users/doug/work/story
+[push]
+	default = upstream
+[credential]
+	helper = osxkeychain
+[grep]
+	extendRegexp = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Users/mcbrd007/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

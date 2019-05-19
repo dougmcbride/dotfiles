@@ -1,6 +1,6 @@
 # Load ~/.bash_prompt, ~/.exports, ~/.aliases, ~/.functions and ~/.extra
 # ~/.extra can be used for settings you don’t want to commit
-for file in ~/.{bash_prompt,exports,aliases,functions,extra}; do
+for file in ~/.{exports,aliases,functions,extra,bash_prompt}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
@@ -13,8 +13,16 @@ export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
+#[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
+
+# The next line updates PATH for the Google Cloud SDK.
+#source '/Users/mcbrd007/google-cloud-sdk/path.bash.inc'
+
+# The next line enables shell command completion for gcloud.
+#source '/Users/mcbrd007/google-cloud-sdk/completion.bash.inc'
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

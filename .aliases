@@ -1,3 +1,38 @@
+alias b="cd ~/Projects/bots"
+alias i="cd ~/work/disneygif/ios"
+alias s="cd ~/work/stickers/android"
+alias w="cd /Users/mcbrd007/work/assistant/mickey-90th-action"
+alias db="rm -rf ~/work/OhMyDisney/*/build"
+alias dk="docker-compose"
+alias m="cd ~/work/MicroContent/ios"
+alias v="cd ~/work/DisneyVideo"
+alias bot='irc -p 2665 -c \#botopia doug sneakyfrog.com'
+alias ca="git ci -a -m '$*'"
+alias f='ssh doug@sneakyfrog.com'
+alias tomaster='git co $1 && git rebase master && git co master && git merge --ff-only $1 && git branch -d $1'
+alias g=git
+alias j='sudo killall VDCAssistant && open /Applications/Jabber\ Video.app'
+alias nfind='find . -name $*'
+alias r=ranger
+rgrep() {
+  find . -type f -exec grep "$1" {} +
+}
+alias sbot='ssh doug@sneakyfrog.com bot'
+alias sc="script/console"
+alias sdv="ssh siteadm@n7-z01-0a2a1127.woc.prod"
+alias svm="ssh -p 8022 deployer@localhost"
+alias sgrep='find -X . -type f | xargs grep "$*" | grep -v svn'
+alias ss="script/server"
+alias vb='git -m "Version bump"'
+alias vi='mvim'
+alias vim='mvim -v'
+alias vl='open /c/Vlix.xcodeproj'
+alias vx='vim ios/MemMaker.xcodeproj/project.pbxproj && git add ios/MemMaker.xcodeproj/project.pbxproj'
+alias rpull='cp ~/Dropbox/SpotMixer/iPhone\ app\ releases/release_notes.txt . && vi release_notes.txt'
+alias rpush='mv release_notes.txt ~/Dropbox/SpotMixer/iPhone\ app\ releases/release_notes.txt'
+#alias rver="ruby -pi -e '\$_.gsub!(/>[0-9]{5}</) {|s| %(>#{%x(pbpaste)}<)}' *Info.plist && git ca version_bump && git tag -a -m build\\ `pbpaste` build\\ `pbpaste`"
+alias rall='g co master && for x in `g branch|grep -v \*|grep -v "  old"|xargs echo`; do echo "$x ----"; git rebase master $x; done'
+alias pub='cp "$*" ~/Dropbox/Public && echo -n "http://dl.dropbox.com/u/39657/$*" | pbcopy'
 # Easier navigation: .., ..., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -31,7 +66,8 @@ alias whois="whois -h whois-servers.net"
 alias flush="dscacheutil -flushcache"
 
 # View HTTP traffic
-alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+alias sniff0="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
+alias sniff1="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Start an HTTP server from a directory
@@ -44,17 +80,14 @@ type -t hd > /dev/null || alias hd="hexdump -C"
 type -t md5sum > /dev/null || alias md5sum="md5"
 
 # Trim new lines and copy to clipboard
-alias c="tr -d '\n' | pbcopy"
+alias c="cd ~/Projects/chatopia/chatopia-docker"
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
-alias p="cd ~/Projects"
-alias g="git"
-alias v="vim"
-alias m="mate ."
+#alias v="vim"
+alias x="pbpaste | xmllint --format - | pbcopy"
 
 # File size
 alias fs="stat -f \"%z bytes\""
